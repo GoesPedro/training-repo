@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>RLA - AV3.2</title>
+</head>
+
+<body>
+    <h1>Raciocínio Lógico Algorítmico - AV3 2ª Chamada</h1>
+    <h3>Por Pedro Ignácio</h3>
+
+    <script>
+
+        let tabuleiro = [
+            [0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0],
+        ];
+
+        for (let j = 0; j < 8; j++) {
+            for (let i = 0; i < 8; i++) {
+                let x = parseInt(prompt(`Digite o código da peça na posição (${j+1}, ${i+1}):`));
+                if (x > 0 && x < 7) {
+                    tabuleiro[j][i] = x;
+                } else {
+                    tabuleiro[j][i] = 0;
+                }
+            }
+        }
+
+        const gambitoDaRainha = matrix => {
+            let peao = 0;
+            let cavalo = 0;
+            let torre = 0;
+            let bispo = 0;
+            let rei = 0;
+            let rainha = 0;
+
+            matrix.forEach(linha => {
+                let filtro1 = linha.filter(peca => peca === 1);
+                peao += filtro1.length;
+
+                let filtro2 = linha.filter(peca => peca === 2);
+                cavalo += filtro2.length;
+
+                let filtro3 = linha.filter(peca => peca === 3);
+                torre += filtro3.length;
+
+                let filtro4 = linha.filter(peca => peca === 4);
+                bispo += filtro4.length;
+
+                let filtro5 = linha.filter(peca => peca === 5);
+                rei += filtro5.length;
+
+                let filtro6 = linha.filter(peca => peca === 6);
+                rainha += filtro6.length;
+
+                linha.forEach(elemento => {
+                    document.write(`${elemento} `)
+                });
+
+                document.write('<br>');
+            });
+
+            return [peao, cavalo, torre, bispo, rei, rainha];
+        }
+
+        document.write('<hr><b>Eis o teu tabuleiro:</b><br><br>');
+
+        let totais = gambitoDaRainha(tabuleiro);
+
+        document.write(`<hr><b>Totais por peça:</b><br><br>
+        Peões: ${totais[0]} peças;<br>
+        Cavalos: ${totais[1]} peças;<br>
+        Torres: ${totais[2]} peças;<br>
+        Bispos: ${totais[3]} peças;<br>
+        Reis: ${totais[4]} peças;<br>
+        Rainhas: ${totais[5]} peças.
+        `);
+
+    </script>
+</body>
+
+</html>
